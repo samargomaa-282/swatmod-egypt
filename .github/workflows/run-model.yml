@@ -1,0 +1,61 @@
+name: Run SWAT model and store outputs
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  run-swat:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run SWAT model in Docker
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/TxtInOut:/swat_data" \
+            -w /swat_data \
+            crazyzlj/swat:alpint-2012.683 \
+            swat2012.683.gfort.rel
+
+      - name: Collect SWAT outputs
+        run: |
+          mkdir -p /tmp/swat-output
+          cp -r ./TxtInOut/output.* /tmp/swat-output/
+          cd /tmp/swat-output
+
+          [ -f output.snu ] && { tail -n +5  output.snu; } | sed -E 's/ +/,/g' > output.snu.csv && zip -ur output.zip output.snu.csv && rm output.snu.csv
+          [ -f output.hru ] && { tail -n +10 output.hru; } | sed -E 's/ +/,/g' > output.hru.csv && zip -ur output.zip output.hru.csv && rm output.hru.csv
+          [ -f output.rch ] && { tail -n +10 output.rch; } | sed -E 's/ +/,/g' > output.rch.csv && zip -ur output.zip output.rch.csv && rm output.rch.csv
+
+      - name: Checkout output branch
+        run: |
+          git fetch origin output || true
+          if git show-ref --quiet refs/remotes/origin/output; then
+            git checkout output
+          else
+            git checkout --orphan output
+            git rm -rf .
+          fi    
+
+      - name: Replace output branch contents
+        run: |
+          rm -rf *
+          cp -r /tmp/swat-output/output.zip .
+
+      - name: Commit and push outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com)"
+
+          git add .
+          git commit -m "SWAT outputs for source commit $GITHUB_SHA" || echo "No changes"
+          git push origin output
