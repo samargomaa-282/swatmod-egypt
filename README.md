@@ -36,3 +36,9 @@ In many cases you will have multiple scenarios in your repository, each reposito
 
 Create a branch for each scenario. The structure of each of the branches will be similar.
 The outputs of the scenario runs will be available in branch output in /{branchname}/output.zip
+
+- main (general documentation)
+- baseline (the baseline scenario)
+- schenario1
+- scenario2
+

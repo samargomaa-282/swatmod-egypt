@@ -1,8 +1,8 @@
-name: Run SWAT model and store outputs
+name: Run SWAT model on all branches, except main, and store outputs
 
 on:
   push:
-    branches:
+    branches-ignore:
       - main
 
 permissions:
@@ -29,33 +29,44 @@ jobs:
       - name: Collect SWAT outputs
         run: |
           mkdir -p /tmp/swat-output
-          cp -r ./TxtInOut/output.* /tmp/swat-output/
+          cp -r ./TxtInOut/output.snu /tmp/swat-output/
+          cp -r ./TxtInOut/output.hru /tmp/swat-output/
+          cp -r ./TxtInOut/output.rch /tmp/swat-output/
+          cp -r ./TxtInOut/file.cio /tmp/swat-output/
           cd /tmp/swat-output
 
-          [ -f output.snu ] && { tail -n +5  output.snu; } | sed -E 's/ +/,/g' > output.snu.csv && zip -ur output.zip output.snu.csv && rm output.snu.csv
-          [ -f output.hru ] && { tail -n +10 output.hru; } | sed -E 's/ +/,/g' > output.hru.csv && zip -ur output.zip output.hru.csv && rm output.hru.csv
-          [ -f output.rch ] && { tail -n +10 output.rch; } | sed -E 's/ +/,/g' > output.rch.csv && zip -ur output.zip output.rch.csv && rm output.rch.csv
+          [ -f output.snu ] && zip -ur output.zip output.snu
+          [ -f output.hru ] && zip -ur output.zip output.hru
+          [ -f output.rch ] && zip -ur output.zip output.rch
+          [ -f file.cio ] && zip -ur output.zip file.cio
 
       - name: Checkout output branch
         run: |
           git fetch origin output || true
+          TARGET_DIR=${{ github.ref_name }}
+
+          # Make sure we're on the branch that stores results
           if git show-ref --quiet refs/remotes/origin/output; then
             git checkout output
           else
             git checkout --orphan output
-            git rm -rf .
-          fi    
+            git reset --hard   # clean index state, but don’t mass-delete yet
+          fi
 
-      - name: Replace output branch contents
-        run: |
-          rm -rf *
-          cp -r /tmp/swat-output/output.zip .
+          # Remove ONLY the old contents of that folder from git + disk
+          git rm -rf --ignore-unmatch $TARGET_DIR
 
-      - name: Commit and push outputs
-        run: |
+          # Recreate the folder (git rm deletes the dir itself)
+          mkdir -p $TARGET_DIR
+
+          # Copy in new generated files
+          cp -r /tmp/swat-output/output.zip $TARGET_DIR/
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com)"
 
-          git add .
-          git commit -m "SWAT outputs for source commit $GITHUB_SHA" || echo "No changes"
+          # Stage and commit
+          git add $TARGET_DIR
+          git commit -m "Model outputs for branch  ${{ github.ref_name }}" || echo "No changes"
           git push origin output
+    
