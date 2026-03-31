@@ -73,7 +73,7 @@ ATMOSPERIC DEPOSITION
 ATMO.ATM
                1    | IPHR: print code for hourly output 0=no 1=yes (hourq.out)
                0    | ISTO: print code for soil storage 0=no 1=yes (output.swr)
-               0    | ISOL: Code for printing phosphorus/nitrogen in soil profile (output.snu)
+               1    | ISOL: Code for printing phosphorus/nitrogen in soil profile (output.snu)
                0    | I_SUBW: Code for routing headwaters
 septwq.dat
                0    | IA_B: Code for binary output of files (.rch, .sub, .hru files only)
