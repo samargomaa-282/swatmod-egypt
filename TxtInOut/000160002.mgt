@@ -1,0 +1,36 @@
+ .mgt file Watershed HRU:91 Subbasin:16 HRU:2 Luse:ORAN Soil: Jc26-2-3a-106 Slope: 0-20.0 7/28/2025 12:00:00 AM ArcSWAT 2012.10_8.26
+               0    | NMGT:Management code
+Initial Plant Growth Parameters
+               1    | IGRO: Land cover status: 0-none growing; 1-growing
+             109    | PLANT_ID: Land cover ID number (IGRO = 1)
+            2.25    | LAI_INIT: Initial leaf are index (IGRO = 1)
+         1000.00    | BIO_INIT: Initial biomass (kg/ha) (IGRO = 1)
+         3500.00    | PHU_PLT: Number of heat units to bring plant to maturity (IGRO = 1)
+General Management Parameters
+            0.10    | BIOMIX: Biological mixing efficiency
+           62.50    | CN2: Initial SCS CN II value
+            0.60    | USLE_P: USLE support practice factor
+           10.00    | BIO_MIN: Minimum biomass for grazing (kg/ha)
+           5.000    | FILTERW: width of edge of field filter strip (m)
+Urban Management Parameters
+               0    | IURBAN: urban simulation code, 0-none, 1-USGS, 2-buildup/washoff
+               0    | URBLU: urban land type
+Irrigation Management Parameters
+               5    | IRRSC: irrigation code
+               0    | IRRNO: irrigation source location
+           0.000    | FLOWMIN: min in-stream flow for irr diversions (m^3/s)
+           0.000    | DIVMAX: max irrigation diversion from reach (+mm/-10^4m^3)
+           0.000    | FLOWFR: : fraction of flow allowed to be pulled for irr
+Tile Drain Management Parameters
+          30.000    | DDRAIN: depth to subsurface tile drain (mm)
+          24.000    | TDRAIN: time to drain soil to field capacity (hr)
+          48.000    | GDRAIN: drain tile lag time (hr)
+Management Operations:
+               1    | NROT: number of years of rotation
+Operation Schedule:
+  1 14           1  109      5   3800.00000   2.25  2000.00000 0.40  25.00 57.32
+  1 15           3   45         20000.00000   0.20
+  1 16          10    1   5         0.90000   0.70   250.00000 0.55                        0
+  1 21          11    1             0.90000 150.00   500.00000 0.80   0.20
+ 10  1           7        0         0.90000   0.40
+                17

@@ -1,0 +1,90 @@
+ .mgt file Watershed HRU:114 Subbasin:11 HRU:6 Luse:CORN Soil: Jc26-2-3a-106 Slope: 0-20.0 6/22/2025 12:00:00 AM ArcSWAT 2012.10_8.26
+               0    | NMGT:Management code
+Initial Plant Growth Parameters
+               1    | IGRO: Land cover status: 0-none growing; 1-growing
+              19    | PLANT_ID: Land cover ID number (IGRO = 1)
+            2.00    | LAI_INIT: Initial leaf are index (IGRO = 1)
+          500.00    | BIO_INIT: Initial biomass (kg/ha) (IGRO = 1)
+         1300.00    | PHU_PLT: Number of heat units to bring plant to maturity (IGRO = 1)
+General Management Parameters
+            0.05    | BIOMIX: Biological mixing efficiency
+           79.45    | CN2: Initial SCS CN II value
+            0.60    | USLE_P: USLE support practice factor
+            5.00    | BIO_MIN: Minimum biomass for grazing (kg/ha)
+           5.000    | FILTERW: width of edge of field filter strip (m)
+Urban Management Parameters
+               1    | IURBAN: urban simulation code, 0-none, 1-USGS, 2-buildup/washoff
+               9    | URBLU: urban land type
+Irrigation Management Parameters
+               1    | IRRSC: irrigation code
+              11    | IRRNO: irrigation source location
+           0.500    | FLOWMIN: min in-stream flow for irr diversions (m^3/s)
+         -17.000    | DIVMAX: max irrigation diversion from reach (+mm/-10^4m^3)
+           0.500    | FLOWFR: : fraction of flow allowed to be pulled for irr
+Tile Drain Management Parameters
+          20.000    | DDRAIN: depth to subsurface tile drain (mm)
+          24.000    | TDRAIN: time to drain soil to field capacity (hr)
+          48.000    | GDRAIN: drain tile lag time (hr)
+Management Operations:
+               5    | NROT: number of years of rotation
+Operation Schedule:
+  1 15           5                 71.68657
+  2 15           1  109      5   4000.00000   1.00   300.00000 0.25   5.00 55.53
+  3 15           1   66      1   2200.00000   0.45   425.00000 0.35  10.00 82.82
+  4  1           1   33          2000.00000   0.55   450.00000 0.50  12.00 66.22
+  4  2           3   21            40.00000   0.20
+  4  3           2        1       100.00000 800.00     0.75000 0.05                        1
+  4 22           2        1       100.00000 800.00     0.75000 0.05                        1
+  5  1          14  120   1 10      80.0000
+  5  1           5                 73.89191
+  5  1           1   19          1900.00000   0.50   500.00000 0.50  15.00 79.45
+  5  2           2        1        60.00000 800.00     0.75000 0.05                        1
+  5  8           2        1        60.00000 800.00     0.75000 0.05                        1
+  5 15           2        1       100.00000 800.00     0.75000 0.05                        1
+  5 21           2        1        30.00000 800.00     0.75000 0.05                        1
+  5 26           2        1        30.00000 800.00     0.75000 0.05                        1
+  6  2           2        1        30.00000 800.00     0.75000 0.05                        1
+  6  7           2        1        30.00000 800.00     0.75000 0.05                        1
+  6 12           2        1        30.00000 800.00    75.00000 0.05                        1
+  6 18           2        1        30.00000 800.00     0.75000 0.05                        1
+  6 23           2        1        30.00000 800.00     0.75000 0.05                        1
+  6 25           2        1        30.00000 800.00     0.75000 0.05                        1
+  7  1           2        1        50.00000 800.00     0.75000 0.05                        1
+  7  6           2        1        50.00000 800.00     0.75000 0.05                        1
+  7 11           2        1        50.00000 800.00     0.75000 0.05                        1
+  7 16           2        1        50.00000 800.00     0.75000 0.05                        1
+  7 21           2        1        50.00000 800.00     0.75000 0.05                        1
+  7 26           2        1        50.00000 800.00     0.75000 0.05                        1
+  8  2           2        1        50.00000 800.00     0.75000 0.05                        1
+  8  7           2        1        50.00000 800.00     0.75000 0.05                        1
+  8 12           2        1        50.00000 800.00     0.75000 0.05                        1
+  9  1           5                 79.45384
+  9  1           5                 66.22403
+  9  4           6   79            77.22089
+  9  8           2        1       100.00000 500.00     0.75000 0.05                        1
+  9 15           5                 82.82307
+  9 15           1   85          1200.00000   0.30   225.00000 0.65   7.00 75.00
+  9 15           1   92          1500.00000   0.35   300.00000 0.65   7.00 77.22
+  9 18           2        1        40.00000 500.00     0.75000 0.20                        1
+  9 30           3    6            50.00000   0.20
+ 10  1           2        1        60.00000 500.00     0.75000 0.20                        1
+ 10  1           1   54          1400.00000   0.75   750.00000 0.85   8.00 71.69
+ 10 12           3   21            30.00000   0.20
+ 10 13           2        1        60.00000 500.00     0.75000 0.20                        1
+ 11  1           3    6            75.00000   0.20
+ 11  1          14   45   6  7      50.0000
+ 11  2           2        1        60.00000 500.00     0.75000 0.05                        1
+ 11  9           2        1       520.00000 500.00     0.75000 0.05                        1
+ 12  1           1   28          1600.00000   0.40   350.00000 0.50  12.00 73.89
+                17
+  1 15           5                 77.22089
+  1 15           5                 74.99881
+  2 15           1  109      5   4000.00000   0.10   100.00000 0.10   1.00 55.53
+                17
+  2 15           1  109      5   4000.00000   2.00   400.00000 0.20   3.00 55.53
+                17
+  2 15           1  109      5   1800.00000   3.00   600.00000 0.20   4.00 55.53
+                17
+  2 15           1  109          1800.00000   5.00   800.00000 0.40  10.00 77.22
+  2 28           7        1         0.85000   0.00
+                17
